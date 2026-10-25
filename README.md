@@ -50,5 +50,5 @@ MySQL (MySQL Workbench), Power BI Desktop, GitHub
 4. `Flagged Months.sql`: lists the flagged months
 
 ## Reproduce
-1. Create a MySQL database named `Food cpi` and import `DATA/Cso Cpi Food.csv.csv` into a table called `cpm17_raw`.
+1. Create a MySQL database named `food_cpi` and import `DATA/Cso Cpi Food.csv.csv` into a table called `cpm17_raw`.
 2. Run the scripts in `SQL/` in the order above.
