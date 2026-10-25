@@ -1,6 +1,6 @@
 # Irish Food Price Anomaly Detection (CSO CPI, 2012–2023)
 
-SQL and dashboard project that flags unusual month-on-month movements in Irish food prices using Central Statistics Office (CSO) Consumer Price Index data.
+SQL and dashboard project that flags unusual month on month movements in Irish food prices using Central Statistics Office (CSO) Consumer Price Index data.
 
 ## Business question
 Which months saw food price changes far outside the normal range, and how would a risk or finance team spot them early?
@@ -16,10 +16,10 @@ MySQL (MySQL Workbench), Power BI Desktop, GitHub
 
 ## Method
 1. Loaded the raw CSO CSV into MySQL as text, to keep category codes like `01` intact.
-2. Cleaned it into `cpi_clean`: converted months to dates, cast index values to numbers, and removed blank rows (the two service divisions have no goods index values).
-3. Calculated month-on-month % change using the `LAG` window function.
+2. Cleaned it into `cpi clean`: converted months to dates, cast index values to numbers, and removed blank rows (the two service divisions have no goods index values).
+3. Calculated month on month % change using the `LAG` window function.
 4. Calculated each month's z-score against the series mean and standard deviation, and flagged months with |z| >= 2.
-5. Saved the logic as a view (`food_mom_flags`) and built a dashboard from it.
+5. Saved the logic as a view (`Food Mom Flags`) and built a dashboard from it.
 
 ## Key findings
 - June 2022 is the most unusual month: food prices rose 2.31% in one month (z-score 4.53), far beyond anything else in the series.
@@ -38,11 +38,17 @@ MySQL (MySQL Workbench), Power BI Desktop, GitHub
 - Z-scores here use the whole period's average and spread, so a sustained shift in volatility (such as 2022 onwards) inflates the spread and affects what gets flagged.
 
 ## Repo structure
-- `data/`: raw CSO CSV and the exported view
-- `sql/`: numbered scripts (run in order)
-- `dashboard/`: Power BI file and screenshot
-- `notes/`: working notes
+- `DATA/`: raw CSO CSV and the exported view
+- `SQL/`: all queries (run order below)
+- `Dashboard/`: Power BI file and screenshot
+- `Notes/`: working notes
+
+## SQL scripts (run in this order)
+1. `Explore and Clean.sql`: inspects the raw data and builds the clean table
+2. `Mom Change.sql`: calculates month on month % change
+3. `Food Flags View.sql`: creates the `food_mom_flags` view with z-scores and flags
+4. `Flagged Months.sql`: lists the flagged months
 
 ## Reproduce
-1. Create a MySQL database named `food_cpi` and import the CSV from `data/` into a table called `cpm17_raw`.
-2. Run the scripts in `sql/` in numbered order.
+1. Create a MySQL database named `Food cpi` and import `DATA/Cso Cpi Food.csv.csv` into a table called `cpm17_raw`.
+2. Run the scripts in `SQL/` in the order above.
