@@ -46,7 +46,7 @@ MySQL (MySQL Workbench), Power BI Desktop, GitHub
 ## SQL scripts (run in this order)
 1. `Explore and Clean.sql`: inspects the raw data and builds the clean table
 2. `Mom Change.sql`: calculates month on month % change
-3. `Food Flags View.sql`: creates the `food_mom_flags` view with z-scores and flags
+3. `Food Flags View.sql`: creates the `Food Mom Flags` view with z-scores and flags
 4. `Flagged Months.sql`: lists the flagged months
 
 ## Reproduce
