@@ -28,3 +28,5 @@ WHERE c.mom_pct IS NOT NULL;
 SELECT status, COUNT(*) AS months
 FROM food_mom_flags
 GROUP BY status;
+USE food_cpi;
+SELECT * FROM food_mom_flags ORDER BY month_date;
